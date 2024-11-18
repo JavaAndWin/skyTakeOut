@@ -113,9 +113,22 @@ public class EmployeeServiceImpl implements EmployeeService {
         Page<Employee> page = employeeMapper.query(employeePageQueryDTO);
         long total = page.getTotal();
         List<Employee> records = page.getResult();
-        PageResult pageResult = new PageResult();
-        pageResult.setTotal(total);
-        pageResult.setRecords(records);
-        return pageResult;
+        return new PageResult(total,records);
+    }
+
+    /**
+     * 员工账户状态设置
+     * @param status
+     * @param id
+     */
+    @Override
+    public void updateStatus(int status,Long id) {
+
+        Employee employee = Employee.builder()
+                                    .id(id)
+                                    .status(status)
+                                    .build();
+
+        employeeMapper.update(employee);
     }
 }

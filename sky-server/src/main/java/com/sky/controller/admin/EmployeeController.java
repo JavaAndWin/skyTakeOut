@@ -93,6 +93,7 @@ public class EmployeeController {
 
     /**
      * 员工分页查询
+     *
      * @param employeePageQueryDTO
      * @return
      */
@@ -103,5 +104,19 @@ public class EmployeeController {
         log.info("分页查询...");
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
+    }
+
+    /**
+     * 员工账户状态设置
+     * @param status
+     * @param id
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    public Result updateStatus(@PathVariable Integer status,Long id) {
+        log.info("员工账户状态设置");
+
+        employeeService.updateStatus(status,id);
+        return Result.success();
     }
 }
