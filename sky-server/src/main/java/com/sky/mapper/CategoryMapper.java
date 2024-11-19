@@ -14,7 +14,7 @@ public interface CategoryMapper {
 
     /**
      * 插入数据
-     * @param category
+     * @param category 分类管理类
      */
     @Insert("insert into category(type, name, sort, status, create_time, update_time, create_user, update_user)" +
             " VALUES" +
@@ -23,8 +23,8 @@ public interface CategoryMapper {
 
     /**
      * 分页查询
-     * @param categoryPageQueryDTO
-     * @return
+     * @param categoryPageQueryDTO 分类管理传输类
+     * @return 分页类
      */
     Page<Category> pageQuery(CategoryPageQueryDTO categoryPageQueryDTO);
 
