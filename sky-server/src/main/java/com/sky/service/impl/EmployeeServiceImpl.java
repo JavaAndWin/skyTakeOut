@@ -75,8 +75,6 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public void save(EmployeeDTO employeeDTO) {
 
-        String username = employeeDTO.getUsername();
-
         //对象字段拷贝
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDTO, employee);
@@ -110,7 +108,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         PageHelper.startPage(employeePageQueryDTO.getPage(),
                 employeePageQueryDTO.getPageSize());
 
-        Page<Employee> page = employeeMapper.query(employeePageQueryDTO);
+        Page<Employee> page = employeeMapper.pageQuery(employeePageQueryDTO);
         long total = page.getTotal();
         List<Employee> records = page.getResult();
         return new PageResult(total,records);
@@ -129,6 +127,31 @@ public class EmployeeServiceImpl implements EmployeeService {
                                     .status(status)
                                     .build();
 
+        employeeMapper.update(employee);
+    }
+
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Employee getById(Long id) {
+
+        return employeeMapper.getById(id);
+    }
+
+    /**
+     * 修改员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @Override
+    public void put(EmployeeDTO employeeDTO) {
+
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDTO, employee);
         employeeMapper.update(employee);
     }
 }

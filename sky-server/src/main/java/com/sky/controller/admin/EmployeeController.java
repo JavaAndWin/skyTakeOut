@@ -113,10 +113,40 @@ public class EmployeeController {
      * @return
      */
     @PostMapping("/status/{status}")
+    @ApiOperation("员工账户状态设置")
     public Result updateStatus(@PathVariable Integer status,Long id) {
         log.info("员工账户状态设置");
 
         employeeService.updateStatus(status,id);
+        return Result.success();
+    }
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    @ApiOperation("根据id查询员工信息")
+    public Result queryById(@PathVariable Long id) {
+        log.info("根据id查询员工信息");
+
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
+
+
+    /**
+     * 修改员工信息
+     * @param employeeDTO
+     * @return
+     */
+    @PutMapping
+    @ApiOperation("修改员工信息")
+    public Result update(@RequestBody EmployeeDTO employeeDTO) {
+        log.info("修改员工信息");
+
+        employeeService.put(employeeDTO);
         return Result.success();
     }
 }
