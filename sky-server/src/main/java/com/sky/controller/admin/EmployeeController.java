@@ -1,5 +1,6 @@
 package com.sky.controller.admin;
 
+
 import com.sky.constant.JwtClaimsConstant;
 import com.sky.dto.EmployeeDTO;
 import com.sky.dto.EmployeeLoginDTO;
@@ -108,21 +109,23 @@ public class EmployeeController {
 
     /**
      * 员工账户状态设置
+     *
      * @param status
      * @param id
      * @return
      */
     @PostMapping("/status/{status}")
     @ApiOperation("员工账户状态设置")
-    public Result updateStatus(@PathVariable Integer status,Long id) {
+    public Result updateStatus(@PathVariable Integer status, Long id) {
         log.info("员工账户状态设置");
 
-        employeeService.updateStatus(status,id);
+        employeeService.updateStatus(status, id);
         return Result.success();
     }
 
     /**
      * 根据id查询员工信息
+     *
      * @param id
      * @return
      */
@@ -138,6 +141,7 @@ public class EmployeeController {
 
     /**
      * 修改员工信息
+     *
      * @param employeeDTO
      * @return
      */
@@ -149,4 +153,7 @@ public class EmployeeController {
         employeeService.put(employeeDTO);
         return Result.success();
     }
+
+
+
 }
