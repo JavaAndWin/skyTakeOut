@@ -49,5 +49,5 @@ public interface EmployeeService {
      * @param employeeDTO
      * @return
      */
-    void put(EmployeeDTO employeeDTO);
+    void update(EmployeeDTO employeeDTO);
 }

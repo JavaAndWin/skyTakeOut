@@ -102,7 +102,7 @@ public class EmployeeController {
     @ApiOperation("员工分页查询")
     public Result<PageResult> page(EmployeePageQueryDTO employeePageQueryDTO) {
 
-        log.info("分页查询...");
+        log.info("分页查询:{}", employeePageQueryDTO);
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
@@ -150,7 +150,7 @@ public class EmployeeController {
     public Result update(@RequestBody EmployeeDTO employeeDTO) {
         log.info("修改员工信息");
 
-        employeeService.put(employeeDTO);
+        employeeService.update(employeeDTO);
         return Result.success();
     }
 
