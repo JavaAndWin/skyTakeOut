@@ -23,6 +23,13 @@
         where id = #{id}
     </update>
 
+    <delete id="deleteBatch">
+        delete from dish where id in
+        <foreach collection="idsList" item="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
 
     <select id="queryByType" resultType="java.util.List">
         select * from dish where

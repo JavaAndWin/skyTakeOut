@@ -36,4 +36,17 @@ public interface DishService {
      * @return
      */
     DishVO getDishById(Long id);
+
+    /**
+     * 批量删除菜品
+     * @param ids
+     */
+    void deleteBatch(String ids);
+
+    /**
+     * 更改菜品售卖状态
+     * @param status
+     * @param id
+     */
+    void updateStatus(int status, String id);
 }

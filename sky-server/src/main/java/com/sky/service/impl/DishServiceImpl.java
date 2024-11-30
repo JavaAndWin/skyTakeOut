@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -130,7 +131,7 @@ public class DishServiceImpl implements DishService {
 
             //批量更新
             if (!updateFlavors.isEmpty()) {
-                dishFlavorMapper.updateBatch(updateFlavors);
+                updateFlavors.forEach(flavor -> dishFlavorMapper.update(flavor));
             }
         }
     }
@@ -153,5 +154,38 @@ public class DishServiceImpl implements DishService {
         //口味信息赋值给dishVO
         dishVO.setFlavors(list);
         return dishVO;
+    }
+
+    /**
+     * 批量删除菜品
+     * @param ids
+     */
+    @Override
+    public void deleteBatch(String ids) {
+        //将字符串提取为集合
+        String[] str = ids.split(",");
+        List<Long> idsList = Arrays.stream(str)
+                .map(Long::parseLong)
+                .collect(Collectors.toList());
+
+        //批量删除菜品
+        dishMapper.deleteBatch(idsList);
+
+        //根据dishId删除口味
+        idsList.forEach(id -> dishFlavorMapper.deleteByDishId(id));
+    }
+
+    /**
+     * 更改菜品售卖状态
+     * @param status
+     * @param id
+     */
+    @Override
+    public void updateStatus(int status, String id) {
+        Dish dish = new Dish();
+        dish.setStatus(status);
+        //将字符串转换为Long
+        dish.setId(Long.valueOf(id));
+        dishMapper.update(dish);
     }
 }

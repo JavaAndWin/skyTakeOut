@@ -52,4 +52,10 @@ public interface DishMapper {
      * @return
      */
     Dish getDishById(Long id);
+
+    /**
+     * 批量删除菜品
+     * @param idsList
+     */
+    void deleteBatch(List<Long> idsList);
 }

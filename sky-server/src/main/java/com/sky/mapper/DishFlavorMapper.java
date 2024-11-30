@@ -16,9 +16,9 @@ public interface DishFlavorMapper {
 
     /**
      * 修改口味信息
-     * @param flavors
+     * @param flavor
      */
-    void updateBatch(List<DishFlavor> flavors);
+    void update(DishFlavor flavor);
 
     /**
      * 根据dishId查询
@@ -28,14 +28,14 @@ public interface DishFlavorMapper {
     List<DishFlavor> getByDishId(Long id);
 
     /**
-     * 单条插入口味信息
-     * @param flavor
-     */
-    void insert(DishFlavor flavor);
-
-    /**
      * 根据id删除口味
      * @param id
      */
     void delete(Long id);
+
+    /**
+     * 根据dishId删除口味
+     * @param id
+     */
+    void deleteByDishId(Long dishId);
 }

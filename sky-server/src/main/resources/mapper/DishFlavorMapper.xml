@@ -10,15 +10,18 @@
         </foreach>
     </insert>
 
-    <update id="updateBatch">
-        <foreach collection="flavors" item="df" separator=";">
+    <update id="update">
             update dish_flavor
-            set dish_id = #{df.dishId},name = #{df.name},value = #{df.value}
-            where id = #{df.id}
-        </foreach>
+            set dish_id = #{dishId},name = #{name},value = #{value}
+            where id = #{id}
     </update>
+
     <delete id="delete">
         delete from dish_flavor where id = #{id}
+    </delete>
+
+    <delete id="deleteByDishId">
+        delete from dish_flavor where dish_id = #{dishId}
     </delete>
 
     <select id="getByDishId" resultType="com.sky.entity.DishFlavor">
