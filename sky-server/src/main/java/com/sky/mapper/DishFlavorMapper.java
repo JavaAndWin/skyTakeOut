@@ -35,7 +35,7 @@ public interface DishFlavorMapper {
 
     /**
      * 根据dishId删除口味
-     * @param id
+     * @param dishId
      */
     void deleteByDishId(Long dishId);
 }

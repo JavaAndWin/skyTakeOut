@@ -50,6 +50,7 @@
         </where>
         order by create_time desc
     </select>
+
     <select id="getDishById" resultType="com.sky.entity.Dish">
         select * from dish where id = #{id}
     </select>
