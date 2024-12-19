@@ -43,4 +43,31 @@ public interface SetmealMapper {
     @AutoFill(OperationType.INSERT)
     void save(Setmeal setmeal);
 
+    /**
+     * 分页查询
+     * @param setmealPageQueryDTO
+     * @return
+     */
+    Page<SetmealVO> pageQuery(SetmealPageQueryDTO setmealPageQueryDTO);
+
+    /**
+     * 根据id查询套餐
+     * @param id
+     * @return
+     */
+    @Select("select * from setmeal where id = #{id}")
+    Setmeal getById(Long id);
+
+    /**
+     * 根据id删除套餐
+     * @param setmealId
+     */
+    @Delete("delete from setmeal where id = #{id}")
+    void deleteById(Long setmealId);
+
+    /**
+     * 更新套餐
+     * @param setmeal
+     */
+    void update(Setmeal setmeal);
 }
